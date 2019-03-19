@@ -1,0 +1,40 @@
+ $("#nameID").val(contatcList[currentIndex].name);
+        $("#telID").val(contatcList[currentIndex].phone);
+       $("#emailID").val(contatcList[currentIndex].email);
+       $("#genderID").val(contatcList[currentIndex].gender == "m"? ("off"):("on"));
+unction editContact (index){
+	 $("#nameID").css("border","black solid 0px");
+	 $("#nameID").attr("placeholder", "Enter your name");
+	 $("#telID").css("border","black solid 0px");
+	 $("#telID").attr("placeholder", "Enter your phone");
+	 $("#emailID").css("border","black solid 0px");
+	 $("#emailID").attr("placeholder", "Enter your email");
+	 
+	var name =  $("#nameID").val();
+	var phone =  $("#telID").val();
+	var email =  $("#emailID").val();
+	var gender =  ($("#genderID").val() == "off" ) ? ("m"):("f") ;
+	
+	if(name !=""&&(validatePhone())&& (validateMial())){
+		contatcList[index].name =  name;
+		contatcList[index].phone = phone; 
+		contatcList[index].email =  email;
+		contatcList[index].gender =  gender;
+		$("#saveNewContact").attr("disabled", "disabled");
+		$("#cancel").attr("disabled", "disabled");
+	}else{
+		if(name ==""){
+			 $("#nameID").css("border","red solid 1px");
+			 $("#nameID").attr("placeholder", "Enter valid value");
+			 
+		}
+		if(!validatePhone()){
+			 $("#telID").css("border","red solid 1px");
+			 $("#telID").attr("placeholder", "Enter valid value");
+		}
+		if(!validateMial()){
+			 $("#emailID").css("border","red solid 1px");
+			 $("#emailID").attr("placeholder", "Enter valid value");
+		}
+	}
+}
